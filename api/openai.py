@@ -3,8 +3,8 @@ from flask import Blueprint, jsonify
 from flask_jwt_extended import jwt_required, current_user, create_access_token, get_jwt_identity, set_access_cookies, get_jwt
 
 from extensions import jwt
-from app.db import get_db
-from app.models import Blog, User
+from db import get_db
+from models import Blog, User
 
 from openai import OpenAI
 from dotenv import load_dotenv

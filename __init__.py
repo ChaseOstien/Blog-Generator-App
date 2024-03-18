@@ -4,8 +4,8 @@ from flask_restful import Api
 from flask_bcrypt import Bcrypt
 from flask_cors import CORS
 
-from app.api import generate_blog, query_blogs, auth
-from app.db import init_db
+from api import generate_blog, query_blogs, auth
+from db import init_db
 from extensions import jwt
 
 from datetime import timedelta

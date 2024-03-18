@@ -3,8 +3,8 @@ from flask import Blueprint, jsonify
 from flask_jwt_extended import create_access_token, set_access_cookies, unset_jwt_cookies
 from flask_bcrypt import Bcrypt
 
-from app.db import get_db
-from app.models import User
+from db import get_db
+from models import User
 from extensions import jwt
 
 from sqlalchemy.exc import SQLAlchemyError
