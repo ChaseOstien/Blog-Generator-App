@@ -6,7 +6,7 @@ from os import getenv
 
 load_dotenv()
 
-engine = create_engine(getenv('DB_URL'), echo=True, pool_size=20, max_overflow=0)
+engine = create_engine(getenv('DB_URL'), echo=True, pool_size=0, max_overflow=0, pool_recycle=3600)
 Session = sessionmaker(bind=engine)
 Base = declarative_base()
 
