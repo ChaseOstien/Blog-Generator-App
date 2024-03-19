@@ -22,7 +22,7 @@ def get_db():
         # store db connection in app context
         g.db = Session()
 
-    return Session()
+    return g.db
 
 # This function closes the database connection
 def close_db(e=None):
