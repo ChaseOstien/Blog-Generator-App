@@ -43,7 +43,7 @@ def refresh_expiring_jwts(response):
         return response
 
 class Generate_blog(Resource):
-    @jwt_required(optional=True)
+    @jwt_required()
     def post(self):
 
         parser = reqparse.RequestParser()

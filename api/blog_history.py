@@ -39,7 +39,7 @@ def refresh_expiring_jwts(response):
         return response
 
 class Query_blogs(Resource):
-    @jwt_required(optional=True)
+    @jwt_required()
     def get(self):
         with get_db() as db:
             try:
@@ -63,7 +63,7 @@ class Query_blogs(Resource):
             except Exception as e:
                 return jsonify(message='Blog history failed to load!', error=str(e)), 500
     
-    @jwt_required(optional=True)
+    @jwt_required()
     def put(self, id):
         with get_db() as db:
             try:
