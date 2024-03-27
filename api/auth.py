@@ -1,5 +1,5 @@
 from flask_restful import Resource, Api, reqparse
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, make_response
 from flask_jwt_extended import create_access_token, set_access_cookies, unset_jwt_cookies
 from flask_bcrypt import Bcrypt
 
@@ -50,13 +50,13 @@ class Login(Resource):
                     set_access_cookies(response, access_token)
                     return response
                 else:
-                    return jsonify(message='Incorrect password!'), 401
+                    return make_response(jsonify(message='Incorrect password!'), 401)
             except NoResultFound:
                 # No user found with the provided username
-                return jsonify(message='No user found with that username!'), 401
+                return make_response(jsonify(message='No user found with that username!'), 401)
             except MultipleResultsFound:
                 # Multiple users found with the same username (shouldn't happen)
-                return jsonify(message='Multiple users found with that username!'), 401
+                return make_response(jsonify(message='Multiple users found with that username!'), 401)
         except Exception as e:
             print(f"Error: {e}")
             return jsonify(message='An unexpected error occurred!')
@@ -91,7 +91,7 @@ class Signup(Resource):
             except SQLAlchemyError as e:
                 print(f"Error adding user to database: {e}")
                 db.rollback()
-                return jsonify(message = 'Failed to add new user!'), 401
+                return make_response(jsonify(message = 'Failed to add new user!'), 401)
         
             access_token = create_access_token(identity=newUser)
             response = jsonify(access_token=access_token)
